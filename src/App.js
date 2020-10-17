@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Menu from './components/Menu';
+import Rodape from './components/Rodape';
+import Rotas from './Rotas';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//import ListagemAlunos from './components/ListagemAlunos';
+//import FormAluno from './components/FormAluno';
+import CadastroAluno from './components/CadastroAluno';
+
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.novoAluno = [];
+    this.state = {
+      Alunos: []
+    };
+  }
+
+  criarAluno(ra, nome, codCurso) {
+    const novoAluno = { ra, nome, codCurso };
+
+    this.Alunos.push(novoAluno);
+
+    this.setState({
+      Alunos: this.Alunos
+    })
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+          <Menu />
+          <Rotas />
+          <Rodape />
+        </div>
+      </BrowserRouter>
+    );
+  }
+
 }
 
 export default App;
+
+
+{/* <section id="alunos">
+
+<ListagemAlunos Alunos={this.state.Alunos} />
+
+<FormAluno criarAluno={this.criarAluno.bind(this)} />
+
+</section>
+
+<section id="curso"> Curso </section>
+
+<section id="carometro"> Carômetro </section> */}
